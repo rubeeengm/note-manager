@@ -1,41 +1,36 @@
-// Lecture: Get And Manipulate On Individual Elements - Part 1
+var newListItem = document.createElement('li');
 
-/*
-console.log(document.getElementById('list'));
+var firstParragraph = document.createElement('p');
+//firstParragraph.appendChild(document.createTextNode('hola'));
 
-var el = document.getElementById('list');
-console.log(el);
-console.log(typeof el);
+var secondParragraph = document.createElement('p');
 
-// var el = document.getElementById('LIST');
-// console.log(el);
+var edit = document.createElement('i');
+edit.setAttribute('class', 'fa fa-pencil-square-o');
 
-console.log(el.textContent);
-console.log(el.textContent = 'Hello');
+var del = document.createElement('i');
+del.setAttribute('class', 'fa fa-times');
 
-var heading = document.getElementById('heading').textContent;
-console.log(heading);
+var input = document.createElement('input');
+input.setAttribute('class', 'edit-note');
+input.setAttribute('type', 'text');
 
-var ulElement = document.getElementById('list');
-console.log(ulElement.textContent = heading);
+secondParragraph.appendChild(edit);
+secondParragraph.appendChild(del);
+secondParragraph.appendChild(input);
 
-console.log(el.innerHTML);
-console.log(el.innerHTML = 'Hello');
-console.log(el.innerHTML = '<h1>Hello</h1>');
-console.log(el.textContent = '<h1>Hello</h1>');
-*/
+newListItem.appendChild(firstParragraph);
+newListItem.appendChild(secondParragraph);
 
+var list = document.getElementById('list');
 
 
+var btn = document.getElementById('add-btn');
+var inputText = document.getElementById('add-input');
 
-
-
-
-
-
-
-
-
-
-
-
+btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    firstParragraph.appendChild(document.createTextNode(inputText.value));
+    list.appendChild(newListItem);
+    inputText.value = '';
+})
