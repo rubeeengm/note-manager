@@ -49,5 +49,21 @@ list.addEventListener('click', function(e) {
         //show input
         input.style.display = 'block';
         input.value = note.textContent;
+
+        input.addEventListener('keypress', function(e) {
+            if(e.keyCode === 13) {
+                if(input.value !== '') {
+                    note.textContent = input.value;
+                    parentPar.style.display = 'block';
+                    input.style.display = 'none';
+                } else {
+                    var li = input.parentNode;
+                    li.parentNode.removeChild(li);
+                }
+            }
+        });
+    } else if (e.target.classList[1] === 'fa-times') {
+        var list = e.target.parentNode.parentNode;
+        list.parentNode.removeChild(list);
     }
 });
