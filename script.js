@@ -51,6 +51,7 @@ list.addEventListener('click', function(e) {
         input.value = note.textContent;
 
         input.addEventListener('keypress', function(e) {
+            //code enter key
             if(e.keyCode === 13) {
                 if(input.value !== '') {
                     note.textContent = input.value;
@@ -65,5 +66,20 @@ list.addEventListener('click', function(e) {
     } else if (e.target.classList[1] === 'fa-times') {
         var list = e.target.parentNode.parentNode;
         list.parentNode.removeChild(list);
+    }
+});
+
+//Hide items
+var hideItem = document.getElementById('hide');
+
+hideItem.addEventListener('click', function() {
+    var label = document.querySelector('label');
+
+    if (hideItem.checked) {
+        label.textContent = 'Unhide notes';
+        list.style.display = 'none';
+    } else {
+        label.textContent = 'Hide notes';
+        list.style.display = 'block';
     }
 });
