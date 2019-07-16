@@ -1,35 +1,33 @@
-var newListItem = document.createElement('li');
-
-var firstParragraph = document.createElement('p');
-
-var secondParragraph = document.createElement('p');
-
-var edit = document.createElement('i');
-edit.className = 'fa fa-pencil-square-o';
-
-var del = document.createElement('i');
-del.className = 'fa fa-times';
-
-var input = document.createElement('input');
-input.className = 'edit-note';
-input.setAttribute('type', 'text');
-
-secondParragraph.appendChild(edit);
-secondParragraph.appendChild(del);
-
-newListItem.appendChild(firstParragraph);
-newListItem.appendChild(secondParragraph);
-newListItem.appendChild(input);
-
-var list = document.getElementById('list');
 var btn = document.getElementById('add-btn');
 var inputText = document.getElementById('add-input');
+var list = document.getElementById('list');
 
 //add notes
 btn.addEventListener('click', function(e) {
     e.preventDefault();
 
     if(inputText.value !== '') {
+        var newListItem = document.createElement('li');
+        var firstParragraph = document.createElement('p');
+        var secondParragraph = document.createElement('p');
+        
+        var edit = document.createElement('i');
+        edit.className = 'fa fa-pencil-square-o';
+
+        var del = document.createElement('i');
+        del.className = 'fa fa-times';
+
+        var input = document.createElement('input');
+        input.className = 'edit-note';
+        input.setAttribute('type', 'text');
+
+        secondParragraph.appendChild(edit);
+        secondParragraph.appendChild(del);
+
+        newListItem.appendChild(firstParragraph);
+        newListItem.appendChild(secondParragraph);
+        newListItem.appendChild(input);
+
         firstParragraph.textContent = inputText.value;
         list.appendChild(newListItem);
         inputText.value = '';
@@ -82,4 +80,22 @@ hideItem.addEventListener('click', function() {
         label.textContent = 'Hide notes';
         list.style.display = 'block';
     }
+});
+
+//Search filter
+var searchInput = document.querySelector('#search-note input');
+
+searchInput.addEventListener('keyup', function(e) {
+    var searchChar = e.target.value.toUpperCase();
+    var notes = list.getElementsByTagName('li');
+
+    Array.from(notes).forEach(function(note) {
+        var parText = note.firstElementChild.textContent;
+
+        if (parText.toUpperCase().indexOf(searchChar) !== -1) {
+            note.style.display = 'block';
+        } else {
+            note.style.display = 'none';
+        }
+    });
 });
